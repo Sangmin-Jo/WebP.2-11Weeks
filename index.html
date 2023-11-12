@@ -509,27 +509,9 @@
 		}
 
 	
-	// page 규격 조절 : Range
+	// page 규격 조절
 		const print = document.getElementById("print");
 
-		function setPrintW(){
-			var print = document.getElementById('print');
-			var bleedC = document.querySelectorAll(".bleedC");
-			print.style.width = printScaleW.value + "mm";
-			bleedC.forEach(function(bleedElement) {
-			  bleedElement.style.width = printScaleW.value + "mm";
-			});
-		}
-		function setPrintH(){
-			var print = document.getElementById('print');
-			var bleedM = document.querySelectorAll(".bleedM");
-			print.style.height = printScaleH.value;
-			bleedM.forEach(function(bleedElement) {
-			  bleedElement.style.height = printScaleH.value + "mm";
-			});
-		}
-
-	// page 규격 조절 : Type
 		document.addEventListener('DOMContentLoaded', function () {
 			document.getElementById('printScaleHType').value = document.getElementById('printScaleH').value;
 			document.getElementById('printScaleWType').value = document.getElementById('printScaleW').value;
@@ -563,12 +545,29 @@
 			setPrintW();
 		});
 		document.getElementById('printScaleW').addEventListener('input', function () {
-			document.getElementById('printScaleWType').value = document.getElementById('printScaleH').value;
+			document.getElementById('printScaleWType').value = document.getElementById('printScaleW').value;
 			print.style.width = parseInt(this.value) + "mm";
 			resizeInputWidth();
 			hideOverflowedDivs();
 			setPrintW();
 		});
+
+		function setPrintW(){
+			var print = document.getElementById('print');
+			var bleedC = document.querySelectorAll(".bleedC");
+			print.style.width = printScaleW.value + "mm";
+			bleedC.forEach(function(bleedElement) {
+			  bleedElement.style.width = printScaleW.value + "mm";
+			});
+		}
+		function setPrintH(){
+			var print = document.getElementById('print');
+			var bleedM = document.querySelectorAll(".bleedM");
+			print.style.height = printScaleH.value;
+			bleedM.forEach(function(bleedElement) {
+			  bleedElement.style.height = printScaleH.value + "mm";
+			});
+		}
 
 		function resizeInputWidth() {
 			var inputW = document.getElementById('printScaleWType');
